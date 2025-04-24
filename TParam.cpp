@@ -17,7 +17,18 @@ TParam::TParam(double x_start, double x_end, double dx, double val)
     set_val(val);
     name = "";
 }
-
+TParam::TParam(std::string name, double x_start, double x_end, double dx)
+{
+    set_range(x_start,x_end,dx);
+    set_name(name);
+    val_id = 0;
+}
+TParam::TParam(std::string name, double x_start, double x_end, double dx, double val)
+{
+    set_range(x_start,x_end,dx);
+    set_val(val);
+    set_name(name);
+}
 void TParam::set_range(double x_start, double x_end, double dx)
 {
     this->x_start = x_start;

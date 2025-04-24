@@ -11,6 +11,8 @@ private:
 public:
     TParam(double x_start, double x_end, double dx);
     TParam(double x_start, double x_end, double dx, double val);
+    TParam(std::string name, double x_start, double x_end, double dx);
+    TParam(std::string name, double x_start, double x_end, double dx, double val);
 
     void set_name(std::string name) { this -> name = name; }
     std::string get_name() { return name; }
