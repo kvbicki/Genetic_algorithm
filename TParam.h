@@ -19,6 +19,7 @@ public:
 
     void set_range(double x_start, double x_end, double dx);
 
+    void set_rand_val();
     void set_val(double val) { val_id = get_val_id(val);}
     double get_val() { return x_start + val_id * dx;}
 
