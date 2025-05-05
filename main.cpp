@@ -15,7 +15,13 @@ int main()
 
     pop.calculate();
     pop.info();
+    pop.best();
 
+    TPopulation pop1(10);
+    pop1.calculate();
+    pop1.info();
+    pop1.best();
+    
     return 0;
     
 }
