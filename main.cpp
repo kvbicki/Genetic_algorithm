@@ -20,7 +20,7 @@ int main()
     TPopulation pop1(10);
     pop1.calculate();
     pop1.info();
-    pop1.best();
+    pop1.best().info();
     
     return 0;
     

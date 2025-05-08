@@ -12,9 +12,13 @@ TCandidate::TCandidate()
 }
 void TCandidate::info()
 {
+    cout << "===================="<<endl;
+    cout << "Najlepszy osobnik" << endl;
     cout << "gens count: " << genes.size() << endl;
     cout << "x1" << " value:" << genes[0].get_val()<< endl;
     cout << "x2" << " value:" << genes[1].get_val() << endl;
+    cout << "Rate: " << ocena << endl;
+    cout << "===================="<<endl;
 }
 void TCandidate::rate()
 {

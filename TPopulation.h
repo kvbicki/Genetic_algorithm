@@ -11,9 +11,10 @@ private:
     double best_val;
     static unsigned int count;
     unsigned int _id;
+    TCandidate BestCandidate;
 public:
     TPopulation(unsigned int candidates_count);
     void calculate();
     void info();
-    void best();
+    TCandidate best();
 };

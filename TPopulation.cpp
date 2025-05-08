@@ -34,29 +34,22 @@ void TPopulation::info()
 }
 void TPopulation::calculate()
 {
+    double best_val = 0;
+
     for(int i = 0; i < candidates_count; i++)
     {
         TCandidate Tc;
         candidates.push_back(Tc);
-    }
-}
-
-void TPopulation::best()
-{
-    double best_val = 0;
-    int i;
-    TCandidate BestCandidate;
-    for( i = 0; i < candidates_count;i++)
-    {
         if(best_val < candidates[i].give_rate())
         {
             best_val = candidates[i].give_rate();
-            BestCandidate = candidates[i];
+            TCandidate BestCandidate = candidates[i];
         }
     }
-    cout << "==============" << endl;
-    cout<< "Najlepszy osobnik: "<<endl;
-    BestCandidate.info();
-    cout << "Rate: "<<best_val << endl;
-    cout << "==============" << endl;
+    
+}
+
+TCandidate TPopulation::best()
+{
+    return BestCandidate;
 }
