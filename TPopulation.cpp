@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <cstdlib>
 #include "TPopulation.h"
 
 using namespace std; 
@@ -25,13 +26,12 @@ void TPopulation::info()
 }
 void TPopulation::calculate()
 {
-    double best_val = 0;
-
     for(int i = 0; i < candidates_count; i++)
     {
         TCandidate Tc;
         Tc.calc_rate();
         candidates.push_back(Tc);
+        rate_sum = rate_sum + candidates[i].give_rate();
         if(best_val < candidates[i].give_rate())
         {
             best_val = candidates[i].give_rate();
@@ -54,4 +54,23 @@ void TPopulation::alg_info()
 double TPopulation::best_rate()
 {
     return BestCandidate.give_rate();
+}
+TCandidate* TPopulation::promote_candidate()
+{
+    // cout << rate_sum << endl;
+    double losowa = static_cast<double>(std::rand()) / RAND_MAX * rate_sum;
+    double a = 0;
+    for (int i = 0; i < candidates_count;i++)
+    {
+        a = a+candidates[i].give_rate();
+        if(losowa < a)
+        {
+            return &candidates[i];
+        }
+    }
+
+}
+std::string TPopulation::get_mark(TCandidate)
+{
+    return 0;
 }
