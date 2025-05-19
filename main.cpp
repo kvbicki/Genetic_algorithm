@@ -1,7 +1,5 @@
 #include <iostream>
-#include "TParam.h"
-#include "TCandidate.h"
-#include "TPopulation.h"
+#include "TAlgorithm.h"
 #include <cstdlib>
 #include <time.h>
 
@@ -10,17 +8,12 @@ using namespace std;
 int main()
 {
     srand(time(0));
-    TPopulation pop(10);
-    pop.info();
+    unsigned int candidates_count = 5;
+    unsigned int max_population_count = 20;
+    unsigned int min_improvment_proc = 0.02;
 
-    pop.calculate();
-    pop.info();
-    pop.best();
-
-    TPopulation pop1(10);
-    pop1.calculate();
-    pop1.info();
-    pop1.best().info();
+    TAlgorithm task{ candidates_count,max_population_count,min_improvment_proc};
+    task.run();
     
     return 0;
     

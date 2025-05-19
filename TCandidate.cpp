@@ -8,7 +8,7 @@ TCandidate::TCandidate()
 {
     genes.push_back(p1);
     genes.push_back(p2);
-    ocena = genes[0].get_val()*genes[0].get_val()+genes[1].get_val();
+    ocena = 0;
 }
 void TCandidate::info()
 {
@@ -27,4 +27,9 @@ void TCandidate::rate()
 double TCandidate::give_rate()
 {
     return ocena;
+}
+void TCandidate::calc_rate()
+{
+    ocena = genes[0].get_val()*genes[0].get_val()+genes[1].get_val();
+
 }
