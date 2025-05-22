@@ -17,10 +17,9 @@ void TPopulation::info()
 
     cout << "===================="<<endl;
     cout << "Populacja: " << _id << endl;
-    int i;
-    for( i = 0; i < candidates_count;i++)
+    for(int i = 0; i < candidates_count;i++)
     {
-        cout << "candidate#" << i << ": " << candidates[i].give_rate() << endl;
+        cout << "candidate#" << candidates[i].get_id() << ": " << candidates[i].give_rate() << endl;
     }
     
 }
@@ -63,14 +62,13 @@ TCandidate* TPopulation::promote_candidate()
     for (int i = 0; i < candidates_count;i++)
     {
         a = a+candidates[i].give_rate();
-        if(losowa < a)
+        if(losowa <= a)
         {
             return &candidates[i];
         }
     }
-
 }
-std::string TPopulation::get_mark(TCandidate)
+unsigned int TPopulation::get_candidates_count()
 {
-    return 0;
+    return candidates_count;
 }

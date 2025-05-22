@@ -21,4 +21,5 @@ public:
     TCandidate* promote_candidate();
     std::string get_mark(TCandidate);
     double best_rate();
+    unsigned int get_candidates_count();
 };

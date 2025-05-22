@@ -5,11 +5,13 @@
 
 using namespace std;
 
+unsigned int TCandidate::_id = 0;
 TCandidate::TCandidate() 
 {
     genes.push_back(p1);
     genes.push_back(p2);
     ocena = 0;
+    id = _id++;
 }
 void TCandidate::info()
 {
@@ -33,4 +35,8 @@ void TCandidate::calc_rate()
 {
     ocena = genes[0].get_val()*genes[0].get_val()+genes[1].get_val();
 
+}
+unsigned int TCandidate::get_id()
+{
+    return id;
 }

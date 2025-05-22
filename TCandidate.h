@@ -11,10 +11,13 @@ private:
     TParam p2{0, 10, 1};
     std::vector<TParam> genes;
     double ocena;
+    static unsigned int _id;
+    unsigned int id;
 public:
     TCandidate();   
     void info();
     void rate();
     void calc_rate();
     double give_rate();
+    unsigned int get_id();
 };
