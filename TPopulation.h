@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "TCandidate.h"
 
 class TPopulation
@@ -22,4 +23,5 @@ public:
     std::string get_mark(TCandidate);
     double best_rate();
     unsigned int get_candidates_count();
+    void test(int num_testing);
 };
