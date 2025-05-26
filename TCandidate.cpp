@@ -40,3 +40,17 @@ unsigned int TCandidate::get_id()
 {
     return id;
 }
+std::string TCandidate::get_binary_rate() {
+    int whole_part = static_cast<int>(ocena);
+    
+    if (whole_part == 0) return "0";
+
+    std::string binary = "";
+    while (whole_part > 0) {
+        binary += (whole_part % 2 == 0 ? '0' : '1');
+        whole_part /= 2;
+    }
+
+    std::reverse(binary.begin(), binary.end());
+    return binary;
+}

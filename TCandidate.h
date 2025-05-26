@@ -2,6 +2,7 @@
 #include <string>
 #include "TParam.h"
 #include <vector>
+#include <algorithm>
 
 class TCandidate
 {
@@ -18,6 +19,7 @@ public:
     void info();
     void rate();
     void calc_rate();
+    std::string get_binary_rate();
     double give_rate();
     unsigned int get_id();
 };

@@ -15,11 +15,13 @@ private:
     double rate_sum = 0;
 public:
     TPopulation(unsigned int candidates_count);
+    TPopulation(TPopulation* older);
     void calculate();
     void info();
     void alg_info();
     TCandidate best();
     TCandidate* promote_candidate();
+    void cross(TCandidate* can1, TCandidate* can2);
     std::string get_mark(TCandidate);
     double best_rate();
     unsigned int get_candidates_count();
