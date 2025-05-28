@@ -23,8 +23,7 @@ TPopulation::TPopulation(TPopulation* older) {
     this-> candidates_count = older->get_candidates_count();
     _id++;
     for(int i = 0 ;i < candidates_count/2;i++){
-        // int random_number = std::rand() % 100 + 1; // liczba od 1-100
-        int random_number = 8;
+        int random_number = std::rand() % 100 + 1; // liczba od 1-100
         TCandidate* can1 = older->promote_candidate();
         TCandidate* can2 = older->promote_candidate();
         if(random_number >= 75){
@@ -37,11 +36,37 @@ TPopulation::TPopulation(TPopulation* older) {
     }
 }
 void TPopulation::cross(TCandidate* can1, TCandidate* can2){
-    int random_number = std::rand() % 11 + 1; // liczba od 1-11
+
+    int split_index = std::rand() % 11 + 1; // liczba od 1-11
+	//cout << "Split index: " << split_index << endl;
     std::string rate1 = can1-> get_binary_rate();
-    cout << rate1 << endl;
+	std::string rate2 = can2->get_binary_rate();
+
+	std::string new_rate1 = mutation(rate1.substr(0, split_index) + rate2.substr(split_index));
+	std::string new_rate2 = mutation(rate2.substr(0, split_index) + rate1.substr(split_index));
+
+	//cout << "can1: " << can1->get_id() << " rate: " << can1->get_rate() << endl;
+    //cout << "can2: " << can2->get_id() << " rate: " << can2->get_rate() << endl;
+
+	can1->set_genes_value(new_rate1);
+    can2->set_genes_value(new_rate2);
+
+	//cout << "new can1: " << can1->get_id() << " rate: " << can1->get_rate() << endl;
+	//cout << "new can2: " << can2->get_id() << " rate: " << can2->get_rate() << endl;
+
     candidates.push_back(*can1);
     candidates.push_back(*can2);
+}
+std::string TPopulation::mutation(std::string old_binary)
+{
+    for(unsigned int i = 0; i < old_binary.length(); i++)
+    {
+        if (std::rand() % 100 < 5) // 5% szans na mutacjê
+        {
+            old_binary[i] = (old_binary[i] == '0') ? '1' : '0'; // zmiana bitu
+        }
+	}
+	return old_binary;
 }
 void TPopulation::info() 
 {
@@ -50,22 +75,22 @@ void TPopulation::info()
     cout << "Populacja: " << _id << endl;
     for(int i = 0; i < candidates_count;i++)
     {
-        cout << "candidate#" << candidates[i].get_id() << ": " << candidates[i].give_rate() << endl;
+        cout << "candidate#" << candidates[i].get_id() << ": " << candidates[i].get_rate() << endl;
     }
     
 }
 void TPopulation::calculate()
 {
     rate_sum = 0;
-    best_val = -INFINITY;
+    best_val = 0;
 
     for (int i = 0; i < candidates_count; i++)
     {
         candidates[i].calc_rate();
-        rate_sum += candidates[i].give_rate();
-        if (candidates[i].give_rate() > best_val)
+        rate_sum += candidates[i].get_rate();
+        if (candidates[i].get_rate() > best_val)
         {
-            best_val = candidates[i].give_rate();
+            best_val = candidates[i].get_rate();
             BestCandidate = candidates[i];
         }
     }
@@ -78,12 +103,12 @@ TCandidate TPopulation::best()
 
 void TPopulation::alg_info()
 {
-    cout<< "== Population #"<< _id << "|| best val: "<< BestCandidate.give_rate() << endl;
+    cout<< "== Population #"<< _id << "|| best val: "<< BestCandidate.get_rate() << endl;
 
 }
 double TPopulation::best_rate()
 {
-    return BestCandidate.give_rate();
+    return BestCandidate.get_rate();
 }
 TCandidate* TPopulation::promote_candidate()
 {
@@ -92,7 +117,7 @@ TCandidate* TPopulation::promote_candidate()
     double a = 0;
     for (int i = 0; i < candidates_count;i++)
     {
-        a = a+candidates[i].give_rate();
+        a = a+candidates[i].get_rate();
         if(losowa <= a)
         {
             return &candidates[i];

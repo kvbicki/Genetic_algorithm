@@ -20,6 +20,8 @@ public:
     void rate();
     void calc_rate();
     std::string get_binary_rate();
-    double give_rate();
+    double get_rate();
     unsigned int get_id();
+    double get_gene_value(int num);
+	void set_genes_value(std::string binary_value);
 };

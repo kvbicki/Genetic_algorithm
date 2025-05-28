@@ -22,6 +22,7 @@ public:
     TCandidate best();
     TCandidate* promote_candidate();
     void cross(TCandidate* can1, TCandidate* can2);
+	std::string mutation(std::string old_binary);
     std::string get_mark(TCandidate);
     double best_rate();
     unsigned int get_candidates_count();

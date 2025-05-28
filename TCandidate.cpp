@@ -27,7 +27,7 @@ void TCandidate::rate()
 {
     cout << "Rate: " << ocena << endl;
 }
-double TCandidate::give_rate()
+double TCandidate::get_rate()
 {
     return ocena;
 }
@@ -41,16 +41,55 @@ unsigned int TCandidate::get_id()
     return id;
 }
 std::string TCandidate::get_binary_rate() {
-    int whole_part = static_cast<int>(ocena);
-    
-    if (whole_part == 0) return "0";
+    int first = static_cast<int>(get_gene_value(0));
 
-    std::string binary = "";
-    while (whole_part > 0) {
-        binary += (whole_part % 2 == 0 ? '0' : '1');
-        whole_part /= 2;
+    std::string binary1 = "";
+    if (first == 0) {
+        binary1 = "0000000";
     }
+    else {
+        while (first > 0) {
+            binary1 += (first % 2 == 0 ? '0' : '1');
+            first /= 2;
+        }
+        std::reverse(binary1.begin(), binary1.end());
+        while (binary1.length() < 7) {
+            binary1 = '0' + binary1;
+        }
+    }
+    int second = static_cast<int>(get_gene_value(1));
+    std::string binary2 = "";
+    if (second == 0) {
+        binary2 = "0000";
+    }
+    else {
+        while (second > 0) {
+            binary2 += (second % 2 == 0 ? '0' : '1');
+            second /= 2;
+        }
+        std::reverse(binary2.begin(), binary2.end());
+        while (binary2.length() < 4) {
+            binary2 = '0' + binary2;
+        }
+    }
+    return binary1 + binary2;
+}
 
-    std::reverse(binary.begin(), binary.end());
-    return binary;
+double TCandidate::get_gene_value(int num)
+{
+    return genes[num].get_val();
+}
+void TCandidate::set_genes_value(std::string binary_value)
+{
+    std::string bin_gen1 = binary_value.substr(0, 7);
+    std::string bin_gen2 = binary_value.substr(7,4);
+
+    int gen1 = std::stoi(bin_gen1, nullptr, 2);
+    int gen2 = std::stoi(bin_gen2, nullptr, 2);
+
+	if (gen1 > 100) gen1 = 100;
+	if (gen2 > 10) gen2 = 10;
+
+    genes[0].set_val(gen1);
+	genes[1].set_val(gen2);
 }

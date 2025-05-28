@@ -18,12 +18,18 @@ int main()
     TPopulation* pop3 = new TPopulation(pop2);
     pop3->calculate();
     pop3->info();
+	TPopulation* pop4 = new TPopulation(pop3);
+	pop4->calculate();
+	pop4->info();
+	TPopulation* pop5 = new TPopulation(pop4);
+	pop5->calculate();
+	pop5->info();
     // cout << "Wylosowani osobnicy: "<<endl;
     // for (int i = 0; i < 10; i++)
     // {
     //     TCandidate* can = pop.promote_candidate();
     //     // can = pop.promote_candidate();
-    //     cout <<"candidate#"<< can->get_id()<< " " <<can-> give_rate() << endl;
+    //     cout <<"candidate#"<< can->get_id()<< " " <<can-> get_rate() << endl;
     // }
 }
 
