@@ -10,30 +10,30 @@ TCandidate::TCandidate()
 {
     genes.push_back(p1);
     genes.push_back(p2);
-    ocena = 0;
+    rate = 0;
     id = _id++;
 }
 void TCandidate::info()
 {
     cout << "===================="<<endl;
-    cout << "Najlepszy osobnik" << endl;
+    cout << "Best candidate" << endl;
     cout << "gens count: " << genes.size() << endl;
     cout << "x1" << " value:" << genes[0].get_val()<< endl;
     cout << "x2" << " value:" << genes[1].get_val() << endl;
-    cout << "Rate: " << ocena << endl;
+    cout << "Rate: " << rate << endl;
     cout << "===================="<<endl;
 }
-void TCandidate::rate()
+void TCandidate::show_rate()
 {
-    cout << "Rate: " << ocena << endl;
+    cout << "Rate: " << rate << endl;
 }
 double TCandidate::get_rate()
 {
-    return ocena;
+    return rate;
 }
 void TCandidate::calc_rate()
 {
-    ocena = genes[0].get_val()*genes[0].get_val()+genes[1].get_val();
+    rate = genes[0].get_val()*genes[0].get_val()+genes[1].get_val();
 
 }
 unsigned int TCandidate::get_id()

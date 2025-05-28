@@ -19,8 +19,7 @@ public:
     TPopulation(TPopulation* older);
     void calculate();
     void info();
-    void alg_info();
-    TCandidate best();
+    TCandidate get_best_candidate();
     TCandidate* promote_candidate();
     void cross(TCandidate* can1, TCandidate* can2);
 	std::string mutation(std::string old_binary);

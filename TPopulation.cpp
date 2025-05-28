@@ -72,7 +72,7 @@ void TPopulation::info()
 {
 
     cout << "===================="<<endl;
-    cout << "Populacja: " << _id << endl;
+    cout << "Population: " << _id << endl;
     for(int i = 0; i < candidates_count;i++)
     {
         cout << "candidate#" << candidates[i].get_id() << ": " << candidates[i].get_rate() << endl;
@@ -96,16 +96,11 @@ void TPopulation::calculate()
     }
 }
 
-TCandidate TPopulation::best()
+TCandidate TPopulation::get_best_candidate()
 {
     return BestCandidate;
 }
 
-void TPopulation::alg_info()
-{
-    cout<< "== Population #"<< _id << "|| best val: "<< BestCandidate.get_rate() << endl;
-
-}
 double TPopulation::best_rate()
 {
     return BestCandidate.get_rate();
@@ -113,12 +108,12 @@ double TPopulation::best_rate()
 TCandidate* TPopulation::promote_candidate()
 {
     // cout << rate_sum << endl;
-    double losowa = static_cast<double>(std::rand()) / RAND_MAX * rate_sum;
+    double random_num = static_cast<double>(std::rand()) / RAND_MAX * rate_sum;
     double a = 0;
     for (int i = 0; i < candidates_count;i++)
     {
         a = a+candidates[i].get_rate();
-        if(losowa <= a)
+        if(random_num <= a)
         {
             return &candidates[i];
         }
@@ -146,12 +141,12 @@ void TPopulation::test(int num_testing)
     for (int i = 0; i < get_candidates_count(); ++i)
     {
         int id = results[i].first;
-        int trafienia = results[i].second;
-        double procent = (static_cast<double>(trafienia) * 100) / num_testing;
+        int hits = results[i].second;
+        double procent = (static_cast<double>(hits) * 100) / num_testing;
 
         std::cout << "candidate#" << id << "   ";
-        std::cout << "Ilosc procent: " << procent << "%";
-        std::cout << " Ilosc trafien: " << trafienia << std::endl;
+        std::cout << "Percent value: " << procent << "%";
+        std::cout << " Hits: : " << hits << std::endl;
     }
 }
 unsigned int TPopulation::get_id()
