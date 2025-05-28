@@ -11,6 +11,7 @@ private:
     std::vector<TCandidate> candidates;
     double best_val;
     static unsigned int _id;
+    unsigned int id;
     TCandidate BestCandidate;
     double rate_sum = 0;
 public:
@@ -27,4 +28,6 @@ public:
     double best_rate();
     unsigned int get_candidates_count();
     void test(int num_testing);
+    unsigned int get_id();
+
 };

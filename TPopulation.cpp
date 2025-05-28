@@ -10,7 +10,7 @@ unsigned int TPopulation::_id = 0;
 TPopulation::TPopulation(unsigned int candidates_count)
 {
     this->candidates_count = candidates_count;
-    _id++;
+    id = ++_id;
     for (unsigned int i = 0; i < candidates_count; ++i)
     {
         TCandidate Tc;
@@ -21,7 +21,7 @@ TPopulation::TPopulation(unsigned int candidates_count)
 TPopulation::TPopulation(TPopulation* older) {
 
     this-> candidates_count = older->get_candidates_count();
-    _id++;
+    id = ++_id;
     for(int i = 0 ;i < candidates_count/2;i++){
         int random_number = std::rand() % 100 + 1; // liczba od 1-100
         TCandidate* can1 = older->promote_candidate();
@@ -153,4 +153,8 @@ void TPopulation::test(int num_testing)
         std::cout << "Ilosc procent: " << procent << "%";
         std::cout << " Ilosc trafien: " << trafienia << std::endl;
     }
+}
+unsigned int TPopulation::get_id()
+{
+    return id;
 }

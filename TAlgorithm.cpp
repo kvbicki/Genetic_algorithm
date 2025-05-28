@@ -1,69 +1,106 @@
 #include <iostream>
-#include <math.h>
-#include <numeric> 
+#include <cmath>
+#include <vector>
 #include <algorithm>
 #include "TAlgorithm.h"
+
 using namespace std;
 
-TAlgorithm::TAlgorithm(unsigned int candidates_count,unsigned int max_population_count,unsigned int min_improvment_proc)
+TAlgorithm::TAlgorithm(unsigned int candidates_count, unsigned int max_population_count, unsigned int min_improvment_proc)
 {
-    this->candidates_count = candidates_count;
-    this->max_population_count = max_population_count;
-    this->min_improvment_proc = min_improvment_proc;
+    stop_max_population_count = max_population_count;
+    stop_min_improvment_proc = min_improvment_proc;
+
+    wsk_population_pres = new TPopulation(candidates_count);
+    wsk_population_prev = nullptr;
+
+    pop_check = 10;
+}
+
+TAlgorithm::~TAlgorithm()
+{
+    if (wsk_population_pres) delete wsk_population_pres;
+    if (wsk_population_prev) delete wsk_population_prev;
+
+    for (auto pop : older) {
+        delete pop;
+    }
+    older.clear();
 }
 
 void TAlgorithm::run()
 {
-    for(int i=0;i<max_population_count;i++){
-        
-        TPopulation* pop = new TPopulation(candidates_count);
-        pop->calculate();
-        pop->alg_info();
-        wczesniejsze.push_back(pop);
+    bool stop = false;
 
-        if(wczesniejsze.size() > 2){
-            delete wczesniejsze[0];
-            wczesniejsze[0] = nullptr;
-            wczesniejsze.erase(wczesniejsze.begin());
-        }
-        if(wczesniejsze.size() >= 2){
+    while (!wsk_population_prev || !stop)
+    {
+        wsk_population_pres->calculate();
 
-            double val1 = wczesniejsze[0]->best_rate();
-            double val2 = wczesniejsze[1]->best_rate();
-            cout <<" val1: " << val1 << " val2: " << val2 << endl;
-            bool roznica =  std::abs(wczesniejsze[1]->best_rate() - wczesniejsze[0]->best_rate()) / wczesniejsze[1]->best_rate() * 100 < min_improvment_proc;
-            // cout << roznica << endl;
-            wczesniejsze_rate.push_back(roznica);
+        older.push_back(new TPopulation(*wsk_population_pres));
+
+        if (older.size() > pop_check) {
+            delete older[0];
+            older.erase(older.begin());
         }
 
+        if (older.size() >= 2) {
+            double val1 = older[older.size() - 2]->best_rate();
+            double val2 = older[older.size() - 1]->best_rate();
 
-        if(wczesniejsze_rate.size() >= pop_check){
+            cout << "val1: " << val1 << " val2: " << val2 << endl;
 
-            if (std::all_of(wczesniejsze_rate.begin(), wczesniejsze_rate.end(), [](bool val){ return val; })) {
-                std::cout << "Wszystkie wartości to true" << std::endl;
-                return;
-            } else {
-                std::cout << "Dalej" << std::endl;
+            bool roznica = (std::abs(val2 - val1) / val1 * 100.0) < stop_min_improvment_proc;
+            older_rate.push_back(roznica);
+
+            if (older_rate.size() > pop_check - 1) {
+                older_rate.erase(older_rate.begin());
             }
-        
-        
-
-            wczesniejsze_rate.erase(wczesniejsze_rate.begin());
         }
-        
-        cout<< endl;
+
+        cout << "== Population #" << wsk_population_pres->get_id();
+        cout << " || best val: " << wsk_population_pres->best_rate() << endl;
+
+        stop = is_stop();
+
+        if (!stop)
+        {
+            unsigned int candidates_count = wsk_population_pres->get_candidates_count();
+
+            if (wsk_population_prev) delete wsk_population_prev;
+            wsk_population_prev = new TPopulation(*wsk_population_pres);
+
+            wsk_population_pres = new TPopulation(wsk_population_prev);
+        }
 
     }
-    cout << "Ilosc danych w wektorze: " << wczesniejsze.size()<<endl;
-    cout << "Ilosc danych w wektorze rate: " << wczesniejsze_rate.size()<<endl;
 
+    cout << "\n[INFO] Algorytm zatrzymany po " << wsk_population_pres->get_id() << " generacjach." << endl;
 }
-// bool TAlgorithm::check()
-// {
-//     unsigned val = 0
-//     for(int i=0;i<wczesniejsze.size();i++){
-//         val += wczesniejsze.
 
-//     }
+bool TAlgorithm::is_max_population()
+{
+    unsigned int id = wsk_population_pres->get_id();
+    return (id >= stop_max_population_count);
+}
 
-// }
+bool TAlgorithm::is_min_improvment()
+{
+    if (older_rate.size() < pop_check - 1)
+        return false;
+
+    bool all_true = std::all_of(older_rate.begin(), older_rate.end(), [](bool val) { return val; });
+
+    return all_true;
+}
+
+bool TAlgorithm::is_stop()
+{
+    if (!wsk_population_prev)
+    {
+        return is_max_population();
+    }
+    else
+    {
+        return is_max_population() || is_min_improvment();
+    }
+}
