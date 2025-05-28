@@ -24,7 +24,7 @@ public:
     void cross(TCandidate* can1, TCandidate* can2);
 	std::string mutation(std::string old_binary);
     std::string get_mark(TCandidate);
-    double best_rate();
+    double get_best_rate();
     unsigned int get_candidates_count();
     void test(int num_testing);
     unsigned int get_id();

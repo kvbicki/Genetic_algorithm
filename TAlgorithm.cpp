@@ -44,8 +44,8 @@ void TAlgorithm::run()
         }
 
         if (older.size() >= 2) {
-            double val1 = older[older.size() - 2]->best_rate();
-            double val2 = older[older.size() - 1]->best_rate();
+            double val1 = older[older.size() - 2]->get_best_rate();
+            double val2 = older[older.size() - 1]->get_best_rate();
 
             cout << "val1: " << val1 << " val2: " << val2 << endl;
 
@@ -58,7 +58,7 @@ void TAlgorithm::run()
         }
 
         cout << "== Population #" << wsk_population_pres->get_id();
-        cout << " || best val: " << wsk_population_pres->best_rate() << endl;
+        cout << " || best val: " << wsk_population_pres->get_best_rate() << endl;
 
         stop = is_stop();
 

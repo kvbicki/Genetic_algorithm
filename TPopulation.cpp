@@ -101,7 +101,7 @@ TCandidate TPopulation::get_best_candidate()
     return BestCandidate;
 }
 
-double TPopulation::best_rate()
+double TPopulation::get_best_rate()
 {
     return BestCandidate.get_rate();
 }
