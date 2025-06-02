@@ -74,7 +74,7 @@ void TAlgorithm::run()
 
     }
 
-    cout << "\n[INFO] Algorithm stopped after " << wsk_population_pres->get_id() << " generations." << endl;
+    cout << "\nAlgorithm stopped after " << wsk_population_pres->get_id() << " generations." << endl;
 }
 
 bool TAlgorithm::is_max_population()
