@@ -12,7 +12,8 @@ private:
 
     std::vector<TPopulation*> older; 
     std::vector<bool> older_rate;      
-    unsigned int pop_check;                   
+    unsigned int pop_check;     
+    double result = 0;              
 
 public:
     TAlgorithm(unsigned int candidates_count, unsigned int max_population_count, unsigned int min_improvment_proc);

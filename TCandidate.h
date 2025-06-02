@@ -8,18 +8,25 @@ class TCandidate
 {
 private:
     std::string name;
-    TParam p1{0, 100, 1};
-    TParam p2{0, 10, 1};
+    double max_gen1 = 100;
+    double max_gen2 = 10;
+    TParam p1{0, max_gen1, 1};
+    TParam p2{0, max_gen2, 1};
     std::vector<TParam> genes;
     double rate;
+    double possible_rate;
     static unsigned int _id;
     unsigned int id;
+    std::string x1_max_bin;
+    std::string x2_max_bin;
 public:
     TCandidate();   
     void info();
     void show_rate();
     void calc_rate();
     std::string get_binary_rate();
+    std::string decimal_to_binary(int number);
+    void get_max_binary_rate();
     double get_rate();
     unsigned int get_id();
     double get_gene_value(int num);

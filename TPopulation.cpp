@@ -91,7 +91,8 @@ void TPopulation::info()
     {
         cout << "candidate#" << candidates[i].get_id() << ": " << candidates[i].get_rate() << endl;
     }
-    
+    cout << endl;
+    cout << "Best candidate id#" << BestCandidate.get_id() << " Rate: " << BestCandidate.get_rate() << endl;
 }
 void TPopulation::calculate()
 {

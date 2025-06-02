@@ -22,9 +22,7 @@ TAlgorithm::~TAlgorithm()
     if (wsk_population_pres) delete wsk_population_pres;
     if (wsk_population_prev) delete wsk_population_prev;
 
-    for (auto pop : older) {
-        delete pop;
-    }
+
     older.clear();
 }
 
@@ -60,6 +58,11 @@ void TAlgorithm::run()
         cout << "== Population #" << wsk_population_pres->get_id();
         cout << " || best val: " << wsk_population_pres->get_best_rate() << endl;
 
+        if(wsk_population_pres->get_best_rate() > result)
+        {
+            result = wsk_population_pres->get_best_rate();
+        }
+        
         stop = is_stop();
 
         if (!stop)
@@ -75,6 +78,7 @@ void TAlgorithm::run()
     }
 
     cout << "\nAlgorithm stopped after " << wsk_population_pres->get_id() << " generations." << endl;
+    cout << "Best value found: " << result << endl;
 }
 
 bool TAlgorithm::is_max_population()

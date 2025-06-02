@@ -9,6 +9,8 @@ int main()
 {
     srand(time(0));
 
+    TCandidate can1;
+    can1.get_max_binary_rate();
 //    TPopulation* pop1 = new TPopulation(10);
 //    pop1->calculate();
 //    pop1->info();

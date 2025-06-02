@@ -12,6 +12,8 @@ TCandidate::TCandidate()
     genes.push_back(p2);
     rate = 0;
     id = _id++;
+    possible_rate = max_gen1 * max_gen1 + max_gen2;
+
 }
 void TCandidate::info()
 {
@@ -33,7 +35,11 @@ double TCandidate::get_rate()
 }
 void TCandidate::calc_rate()
 {
-    rate = genes[0].get_val()*genes[0].get_val()+genes[1].get_val();
+    double x1 = genes[0].get_val();
+    double x2 = genes[1].get_val();
+
+    rate = x1*x1+x2;
+    
 
 }
 unsigned int TCandidate::get_id()
@@ -82,7 +88,8 @@ double TCandidate::get_gene_value(int num)
 void TCandidate::set_genes_value(std::string binary_value)
 {
     std::string bin_gen1 = binary_value.substr(0, 7);
-    std::string bin_gen2 = binary_value.substr(7,4);
+    std::string bin_gen2 = binary_value.substr(7, 4);
+    // std::string bin_gen2 = binary_value.substr(static_cast<int>(x1_max_bin.length()),static_cast<int>(x2_max_bin.length()));
 
     int gen1 = std::stoi(bin_gen1, nullptr, 2);
     int gen2 = std::stoi(bin_gen2, nullptr, 2);
@@ -92,4 +99,30 @@ void TCandidate::set_genes_value(std::string binary_value)
 
     genes[0].set_val(gen1);
 	genes[1].set_val(gen2);
+}
+void TCandidate::get_max_binary_rate()
+{
+
+    
+    x1_max_bin = decimal_to_binary(static_cast<int>(max_gen1));
+    x2_max_bin = decimal_to_binary(static_cast<int>(max_gen2));
+    cout << "====================" << endl;
+    cout << "Possible Max Rate (dec): " << possible_rate << endl;
+    cout << "Possible Max Rate (bin): " << decimal_to_binary(static_cast<int>(possible_rate)) << endl;
+    cout << "x1_max le : " << x1_max_bin.length() << endl;
+    cout << "x1_max (bin): " << x1_max_bin << endl;
+    cout << "x2_max len: " << x2_max_bin.length() << endl;
+    cout << "x2_max (bin): " << x2_max_bin<< endl;
+    cout << "====================" << endl;
+}
+std::string TCandidate::decimal_to_binary(int number)
+{
+    if (number == 0) return "0";
+    std::string result = "";
+    while (number > 0)
+    {
+        result = (number % 2 == 0 ? "0" : "1") + result;
+        number /= 2;
+    }
+    return result;
 }
