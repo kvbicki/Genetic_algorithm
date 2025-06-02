@@ -27,6 +27,20 @@ TPopulation::TPopulation(TPopulation* older) {
         TCandidate* can1 = older->promote_candidate();
         TCandidate* can2 = older->promote_candidate();
         if(random_number >= 75){
+            std::string rate1 = can1-> get_binary_rate();
+            std::string rate2 = can2->get_binary_rate();
+            std::string new_rate1 = mutation(rate1);
+            std::string new_rate2 = mutation(rate2);
+
+            //cout << "can1: " << can1->get_id() << " rate: " << can1->get_rate() << endl;
+            //cout << "can2: " << can2->get_id() << " rate: " << can2->get_rate() << endl;
+
+            can1->set_genes_value(new_rate1);
+            can2->set_genes_value(new_rate2);
+
+            //cout << "new can1: " << can1->get_id() << " rate: " << can1->get_rate() << endl;
+            //cout << "new can2: " << can2->get_id() << " rate: " << can2->get_rate() << endl;
+
             candidates.push_back(*can1);
             candidates.push_back(*can2);
         }
@@ -61,7 +75,7 @@ std::string TPopulation::mutation(std::string old_binary)
 {
     for(unsigned int i = 0; i < old_binary.length(); i++)
     {
-        if (std::rand() % 100 < 5) // 5% szans na mutacjê
+        if (std::rand() % 100 < 5) // 5% szans na mutacjï¿½
         {
             old_binary[i] = (old_binary[i] == '0') ? '1' : '0'; // zmiana bitu
         }
