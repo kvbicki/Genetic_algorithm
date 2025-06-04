@@ -14,7 +14,7 @@ TAlgorithm::TAlgorithm(unsigned int candidates_count, unsigned int max_populatio
     wsk_population_pres = new TPopulation(candidates_count);
     wsk_population_prev = nullptr;
 
-    pop_check = 5;
+    pop_check = 15;
 }
 
 TAlgorithm::~TAlgorithm()
@@ -45,7 +45,7 @@ void TAlgorithm::run()
             double val1 = older[older.size() - 2]->get_best_rate();
             double val2 = older[older.size() - 1]->get_best_rate();
 
-            cout << "val1: " << val1 << " val2: " << val2 << endl;
+            // cout << "val1: " << val1 << " val2: " << val2 << endl;
 
             bool roznica = (std::abs(val2 - val1) / val1 * 100.0) < stop_min_improvment_proc;
             older_rate.push_back(roznica);
@@ -57,6 +57,7 @@ void TAlgorithm::run()
 
         cout << "== Population #" << wsk_population_pres->get_id();
         cout << " || best val: " << wsk_population_pres->get_best_rate() << endl;
+        // wsk_population_pres->info();
 
         if(wsk_population_pres->get_best_rate() > result)
         {
