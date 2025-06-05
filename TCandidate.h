@@ -8,8 +8,8 @@ class TCandidate
 {
 private:
     std::string name;
-    double max_gen1 = 100;
-    double max_gen2 = 10;
+    double max_gen1 = 50;
+    double max_gen2 = 60;
     TParam p1{0, max_gen1, 1};
     TParam p2{0, max_gen2, 1};
     std::vector<TParam> genes;
@@ -31,4 +31,6 @@ public:
     unsigned int get_id();
     double get_gene_value(int num);
 	void set_genes_value(std::string binary_value);
+    int needed_bits(int max_value) const;
+    int get_max_bits() const;
 };

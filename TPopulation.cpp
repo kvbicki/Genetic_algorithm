@@ -51,7 +51,7 @@ TPopulation::TPopulation(TPopulation* older) {
 }
 void TPopulation::cross(TCandidate* can1, TCandidate* can2){
 
-    int split_index = std::rand() % 11 + 1; // liczba od 1-11
+    int split_index = std::rand() % can1->get_max_bits() + 1; // liczba od 1-11
 	//cout << "Split index: " << split_index << endl;
     std::string rate1 = can1-> get_binary_rate();
 	std::string rate2 = can2->get_binary_rate();
