@@ -6,7 +6,7 @@
 
 class TCandidate
 {
-private:
+protected:
     std::string name;
     double max_gen1 = 50;
     double max_gen2 = 60;

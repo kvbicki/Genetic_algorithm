@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include "TCandidate.h"
+#include "TCandidate_Zad1.h"
 
 class TPopulation
 {

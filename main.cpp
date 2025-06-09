@@ -33,10 +33,18 @@ int main()
     //     // can = pop.promote_candidate();
     //     cout <<"candidate#"<< can->get_id()<< " " <<can-> get_rate() << endl;
     // }
-	unsigned int candidates_count = 10;
-    unsigned int max_population_count = 20;
-	unsigned int min_improvment_proc = 2;
-    TAlgorithm task{candidates_count,max_population_count,min_improvment_proc };
-	task.run();
+	// unsigned int candidates_count = 10;
+    // unsigned int max_population_count = 20;
+	// unsigned int min_improvment_proc = 2;
+    // TAlgorithm task{candidates_count,max_population_count,min_improvment_proc };
+	// task.run();
+
+    TCandidate os_org{};
+    os_org.calc_rate();
+    os_org.info();
+
+    TCandidate_Zad1 os_zad1{};
+    os_zad1.calc_rate();
+    os_zad1.info();
 }
 
