@@ -12,7 +12,7 @@ private:
     double max_gen2 = 60;
     TParam p1{0, max_gen1, 1};
     TParam p2{0, max_gen2, 1};
-    std::vector<TParam> genes;
+    std::vector<TParam> genotype;
     double rate;
     double possible_rate;
     static unsigned int _id;
