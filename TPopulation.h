@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "TCandidate.h"
 #include "TCandidate_Zad1.h"
+#include "TCandidate_Zad2.h"
 
 class TPopulation
 {

@@ -4,21 +4,18 @@
 #include <vector>
 #include <algorithm>
 
+#define GENS_COUNT 2
+
 class TCandidate
 {
 protected:
-    std::string name;
     double max_gen1 = 50;
     double max_gen2 = 60;
-    TParam p1{0, max_gen1, 1};
-    TParam p2{0, max_gen2, 1};
-    std::vector<TParam> genotype;
-    double rate;
-    double possible_rate;
-    static unsigned int _id;
-    unsigned int id;
-    std::string x1_max_bin;
-    std::string x2_max_bin;
+    TParam genotype[GENS_COUNT] = {
+        TParam("x1", 0, max_gen1, 1),
+        TParam("x2", 0, max_gen2, 1)
+    };
+
 public:
     TCandidate();   
     void info();
@@ -33,4 +30,12 @@ public:
 	void set_genes_value(std::string binary_value);
     int needed_bits(int max_value) const;
     int get_max_bits() const;
+    
+protected:
+    double rate;
+    double possible_rate;
+    static unsigned int _id;
+    unsigned int id;
+    std::string x1_max_bin;
+    std::string x2_max_bin;
 };

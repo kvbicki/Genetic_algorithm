@@ -46,5 +46,9 @@ int main()
     TCandidate_Zad1 os_zad1{};
     os_zad1.calc_rate();
     os_zad1.info();
+
+    TCandidate_Zad2 os_zad2{};
+    os_zad2.calc_rate();
+    os_zad2.info();
 }
 

@@ -8,8 +8,7 @@ using namespace std;
 unsigned int TCandidate::_id = 0;
 TCandidate::TCandidate() 
 {
-    genotype.push_back(p1);
-    genotype.push_back(p2);
+
     rate = 0;
     id = _id++;
     possible_rate = max_gen1 * max_gen1 + max_gen2;
@@ -19,7 +18,7 @@ void TCandidate::info()
 {
     cout << "===================="<<endl;
     cout << "Best candidate" << endl;
-    cout << "gens count: " << genotype.size() << endl;
+    cout << "gens count: " << GENS_COUNT << endl;
     cout << "x1" << " value:" << genotype[0].get_val()<< endl;
     cout << "x2" << " value:" << genotype[1].get_val() << endl;
     cout << "Rate: " << rate << endl;
@@ -48,7 +47,7 @@ unsigned int TCandidate::get_id()
 }
 std::string TCandidate::get_binary_rate() {
     std::string result = "";
-    for (int i = 0; i < genotype.size(); ++i) {
+    for (int i = 0; i < GENS_COUNT ; ++i) {
         int value = static_cast<int>(genotype[i].get_val());
         int bits_needed = needed_bits((i == 0) ? max_gen1 : max_gen2);
         std::string binary = decimal_to_binary(value);
@@ -66,7 +65,7 @@ double TCandidate::get_gene_value(int num)
 }
 void TCandidate::set_genes_value(std::string binary_value) {
     int start = 0;
-    for (int i = 0; i < genotype.size(); ++i) {
+    for (int i = 0; i < GENS_COUNT; ++i) {
         int bits_needed = needed_bits((i == 0) ? max_gen1 : max_gen2);
         std::string bin_gene = binary_value.substr(start, bits_needed);
         int value = std::stoi(bin_gene, nullptr, 2);

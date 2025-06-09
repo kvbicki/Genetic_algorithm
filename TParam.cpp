@@ -34,6 +34,7 @@ void TParam::set_range(double x_start, double x_end, double dx)
     this->x_start = x_start;
     this->x_end = x_end;
     this->dx = dx;
+    set_rand_val();
 }
 int TParam::get_val_id(double val)
 {
