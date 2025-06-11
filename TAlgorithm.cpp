@@ -14,7 +14,7 @@ TAlgorithm::TAlgorithm(unsigned int candidates_count, unsigned int max_populatio
     wsk_population_pres = new TPopulation(candidates_count);
     wsk_population_prev = nullptr;
 
-    pop_check = 5;
+    pop_check = 8;
 }
 
 TAlgorithm::~TAlgorithm()
