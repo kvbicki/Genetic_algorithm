@@ -8,12 +8,12 @@ using namespace std;
 unsigned int TCandidate::_id = 0;
 TCandidate::TCandidate() 
 {
-    init_vector();
     gens_count = genotype.size();
     rate = 0;
     id = _id++;
-    possible_rate = max_gen1 * max_gen1 + max_gen2;
 
+}
+TCandidate::~TCandidate() {
 }
 TCandidate::TCandidate(const TCandidate& original)
 {
@@ -49,18 +49,7 @@ double TCandidate::get_rate() const
 {
     return rate;
 }
-void TCandidate::calc_rate()
-{
-    double x1 = genotype[0].get_val();
-    double x2 = genotype[1].get_val();
 
-    rate = x1*x1+x2;
-}
-void TCandidate::init_vector()
-{
-    genotype.push_back(TParam("x1", 0, max_gen1, 1));
-    genotype.push_back(TParam("x2", 0, max_gen2, 1));
-}
 unsigned int TCandidate::get_id() const
 {
     return id;
@@ -69,7 +58,7 @@ std::string TCandidate::get_binary_rate() {
     std::string result = "";
     for (int i = 0; i < gens_count ; ++i) {
         int value = static_cast<int>(genotype[i].get_val());
-        int bits_needed = needed_bits((i == 0) ? max_gen1 : max_gen2);
+        int bits_needed = needed_bits((i == 0) ? genotype[0].get_x_end() : genotype[1].get_x_end());
         std::string binary = decimal_to_binary(value);
         while (binary.length() < bits_needed) {
             binary = '0' + binary;
@@ -86,11 +75,11 @@ double TCandidate::get_gene_value(int num)
 void TCandidate::set_genes_value(std::string binary_value) {
     int start = 0;
     for (int i = 0; i < gens_count; ++i) {
-        int bits_needed = needed_bits((i == 0) ? max_gen1 : max_gen2);
+        int bits_needed = needed_bits((i == 0) ? genotype[0].get_x_end() : genotype[1].get_x_end());
         std::string bin_gene = binary_value.substr(start, bits_needed);
         int value = std::stoi(bin_gene, nullptr, 2);
-        if (i == 0 && value > max_gen1) value = max_gen1;
-        if (i == 1 && value > max_gen2) value = max_gen2;
+        if (i == 0 && value > genotype[0].get_x_end()) value = genotype[0].get_x_end();
+        if (i == 1 && value > genotype[1].get_x_end()) value = genotype[1].get_x_end();
         genotype[i].set_val(value);
         start += bits_needed;
     }
@@ -99,10 +88,11 @@ void TCandidate::set_genes_value(std::string binary_value) {
 
 void TCandidate::get_max_binary_rate()
 {
+    possible_rate = genotype[0].get_x_end() * genotype[0].get_x_end() + genotype[1].get_x_end();
 
     
-    x1_max_bin = decimal_to_binary(static_cast<int>(max_gen1));
-    x2_max_bin = decimal_to_binary(static_cast<int>(max_gen2));
+    x1_max_bin = decimal_to_binary(static_cast<int>(genotype[0].get_x_end()));
+    x2_max_bin = decimal_to_binary(static_cast<int>(genotype[1].get_x_end()));
     cout << "====================" << endl;
     cout << "Possible Max Rate (dec): " << possible_rate << endl;
     cout << "Possible Max Rate (bin): " << decimal_to_binary(static_cast<int>(possible_rate)) << endl;
@@ -131,5 +121,6 @@ int TCandidate::needed_bits(int max_value) const {
     return bits;
 }
 int TCandidate::get_max_bits() const{
+
     return needed_bits(possible_rate);
 }
