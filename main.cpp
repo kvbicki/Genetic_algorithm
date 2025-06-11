@@ -39,16 +39,20 @@ int main()
     // TAlgorithm task{candidates_count,max_population_count,min_improvment_proc };
 	// task.run();
 
-    TCandidate os_org{};
-    os_org.calc_rate();
-    os_org.info();
+    vector<TCandidate*> candidates;
+    candidates.push_back(new TCandidate());
+    candidates.push_back(new TCandidate_Zad1());
+    candidates.push_back(new TCandidate_Zad2());
 
-    TCandidate_Zad1 os_zad1{};
-    os_zad1.calc_rate();
-    os_zad1.info();
+    for (int i =0; i < candidates.size(); i++)
+    {
+        candidates[i]->calc_rate();
+        candidates[i]->info();
+    }
+    for(int i = 0; i < candidates.size(); i++)
+    {
+        delete candidates[i];
+    }
 
-    TCandidate_Zad2 os_zad2{};
-    os_zad2.calc_rate();
-    os_zad2.info();
 }
 

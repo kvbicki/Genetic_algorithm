@@ -20,7 +20,7 @@ public:
     TCandidate();   
     void info();
     void show_rate();
-    void calc_rate();
+    virtual void calc_rate();
     std::string get_binary_rate();
     std::string decimal_to_binary(int number);
     void get_max_binary_rate();
@@ -30,7 +30,7 @@ public:
 	void set_genes_value(std::string binary_value);
     int needed_bits(int max_value) const;
     int get_max_bits() const;
-    
+
 protected:
     double rate;
     double possible_rate;
