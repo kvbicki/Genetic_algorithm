@@ -17,7 +17,11 @@ public:
     void set_range(double x_start, double x_end, double dx);
     void set_rand_val();
     void set_val(double val) { val_id = get_val_id(val);}
-    double get_val() { return x_start + val_id * dx;}
+    double get_val() { return x_start + val_id * dx; }
+    double get_val() const { return x_start + val_id * dx;}
+    double get_x_start() const { return x_start; }
+    double get_x_end() const { return x_end; }
+    double get_dx() const { return dx; }
     void info();
 private:
     int get_val_id(double val);

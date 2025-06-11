@@ -8,17 +8,34 @@ using namespace std;
 unsigned int TCandidate::_id = 0;
 TCandidate::TCandidate() 
 {
-
+    init_vector();
+    gens_count = genotype.size();
     rate = 0;
     id = _id++;
     possible_rate = max_gen1 * max_gen1 + max_gen2;
 
 }
+TCandidate::TCandidate(const TCandidate& original)
+{
+    rate = original.get_rate();
+
+    for (int i =0; i < gens_count; i++){
+        double x_start = original.genotype[i].get_x_start();
+        double x_end = original.genotype[i].get_x_end();
+        double dx = original.genotype[i].get_dx();
+        genotype[i].set_range(x_start, x_end, dx);
+
+
+        double val = original.genotype[i].get_val();
+        genotype[i].set_val(val);
+    }
+    gens_count = genotype.size();
+}
 void TCandidate::info()
 {
     cout << "===================="<<endl;
     cout << "Best candidate" << endl;
-    cout << "gens count: " << GENS_COUNT << endl;
+    cout << "gens count: " << gens_count << endl;
     cout << "x1" << " value:" << genotype[0].get_val()<< endl;
     cout << "x2" << " value:" << genotype[1].get_val() << endl;
     cout << "Rate: " << rate << endl;
@@ -28,7 +45,7 @@ void TCandidate::show_rate()
 {
     cout << "Rate: " << rate << endl;
 }
-double TCandidate::get_rate()
+double TCandidate::get_rate() const
 {
     return rate;
 }
@@ -38,16 +55,19 @@ void TCandidate::calc_rate()
     double x2 = genotype[1].get_val();
 
     rate = x1*x1+x2;
-    
-
 }
-unsigned int TCandidate::get_id()
+void TCandidate::init_vector()
+{
+    genotype.push_back(TParam("x1", 0, max_gen1, 1));
+    genotype.push_back(TParam("x2", 0, max_gen2, 1));
+}
+unsigned int TCandidate::get_id() const
 {
     return id;
 }
 std::string TCandidate::get_binary_rate() {
     std::string result = "";
-    for (int i = 0; i < GENS_COUNT ; ++i) {
+    for (int i = 0; i < gens_count ; ++i) {
         int value = static_cast<int>(genotype[i].get_val());
         int bits_needed = needed_bits((i == 0) ? max_gen1 : max_gen2);
         std::string binary = decimal_to_binary(value);
@@ -65,7 +85,7 @@ double TCandidate::get_gene_value(int num)
 }
 void TCandidate::set_genes_value(std::string binary_value) {
     int start = 0;
-    for (int i = 0; i < GENS_COUNT; ++i) {
+    for (int i = 0; i < gens_count; ++i) {
         int bits_needed = needed_bits((i == 0) ? max_gen1 : max_gen2);
         std::string bin_gene = binary_value.substr(start, bits_needed);
         int value = std::stoi(bin_gene, nullptr, 2);
