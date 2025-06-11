@@ -10,6 +10,14 @@ public:
         init_vector();
     }
     TCandidate_Zad2(const TCandidate_Zad2& orginal) : TCandidate(orginal) {}
+    TCandidate* create()
+    {
+        return new TCandidate_Zad2();
+    }
+    TCandidate* create_copy() const
+    {
+        return new TCandidate_Zad2(*this);
+    }
     void calc_rate()
     {
         double x1 = genotype[0].get_val();

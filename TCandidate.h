@@ -16,6 +16,10 @@ public:
     TCandidate();   
     virtual ~TCandidate();
     TCandidate(const TCandidate& original);
+
+    virtual TCandidate* create() = 0;
+    virtual TCandidate* create_copy() const = 0; 
+
     void info();
     void show_rate();
     virtual void calc_rate() = 0;
@@ -31,7 +35,6 @@ public:
 protected:
     virtual void init_vector() = 0;
     
-    double possible_rate;
     static unsigned int _id;
     unsigned int id;
     std::string x1_max_bin;

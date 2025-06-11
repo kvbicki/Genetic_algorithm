@@ -11,6 +11,14 @@ public:
     }
 
     TCandidate_Zad3(const TCandidate_Zad3& original) : TCandidate(original) {}
+    TCandidate* create()
+    {
+        return new TCandidate_Zad3();
+    }
+    TCandidate* create_copy() const
+    {
+        return new TCandidate_Zad3(*this);
+    }
 
     void calc_rate()
     {

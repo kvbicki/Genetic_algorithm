@@ -1,9 +1,5 @@
 #include <iostream>
-// #include "TAlgorithm.h"
-#include "TCandidate.h"
-#include "TCandidate_Zad1.h"
-#include "TCandidate_Zad2.h"
-#include "TCandidate_Zad3.h"
+#include "TAlgorithm.h"
 #include <cstdlib>
 #include <time.h>
 
@@ -18,7 +14,7 @@ int main()
 //    TPopulation* pop1 = new TPopulation(10);
 //    pop1->calculate();
 //    pop1->info();
-//    TPopulation* pop2 = new TPopulation(pop1);
+//    TPopulation* pop2 = new TPopulation(*pop1);
 //    pop2->calculate();
 //    pop2->info();
 //    TPopulation* pop3 = new TPopulation(pop2);
@@ -37,20 +33,42 @@ int main()
     //     // can = pop.promote_candidate();
     //     cout <<"candidate#"<< can->get_id()<< " " <<can-> get_rate() << endl;
     // }
-	// unsigned int candidates_count = 10;
-    // unsigned int max_population_count = 20;
-	// unsigned int min_improvment_proc = 2;
-    // TAlgorithm task{candidates_count,max_population_count,min_improvment_proc };
-	// task.run();
 
-    TCandidate_Zad1 can1;
-    can1.calc_rate();
-    can1.info();
-    TCandidate_Zad2 can2;
-    can2.calc_rate();
-    can2.info();
-    TCandidate_Zad3 can3;
-    can3.calc_rate();
-    can3.info();
+    //CHOOSING PATTERN
+
+    TCandidate* pattern;
+    int count = 0;
+    int _type = -1;
+
+    cout << "Choose candidate type: " << endl;
+    cin >> _type;
+    cout << "Candidates count: ";
+    cin >> count;
+    switch (_type)
+    {
+    case 1:
+        pattern = new TCandidate_Zad1();
+        break;
+    case 2:
+        pattern = new TCandidate_Zad2();
+        break;
+    case 3:
+        pattern = new TCandidate_Zad3();
+        break;
+    default:
+        pattern = new TCandidate_Zad1();
+        break;
+    }
+
+
+    // START ALGORITHM
+
+	unsigned int candidates_count = 10;
+    unsigned int max_population_count = 20;
+	unsigned int min_improvment_proc = 2;
+    TAlgorithm task{pattern,candidates_count,max_population_count,min_improvment_proc };
+	task.run();
+
+
 }
 
