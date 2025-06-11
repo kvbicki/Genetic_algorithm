@@ -3,6 +3,7 @@
 #include "TCandidate.h"
 #include "TCandidate_Zad1.h"
 #include "TCandidate_Zad2.h"
+#include "TCandidate_Zad3.h"
 #include <cstdlib>
 #include <time.h>
 
@@ -48,6 +49,8 @@ int main()
     TCandidate_Zad2 can2;
     can2.calc_rate();
     can2.info();
-
+    TCandidate_Zad3 can3;
+    can3.calc_rate();
+    can3.info();
 }
 

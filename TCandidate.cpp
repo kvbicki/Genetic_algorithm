@@ -36,8 +36,9 @@ void TCandidate::info()
     cout << "===================="<<endl;
     cout << "Best candidate" << endl;
     cout << "gens count: " << gens_count << endl;
-    cout << "x1" << " value:" << genotype[0].get_val()<< endl;
-    cout << "x2" << " value:" << genotype[1].get_val() << endl;
+    for (int i = 0; i < gens_count; ++i) {
+        cout << "x" << (i + 1) << ": " << genotype[i].get_val() << endl;
+    }
     cout << "Rate: " << rate << endl;
     cout << "===================="<<endl;
 }
