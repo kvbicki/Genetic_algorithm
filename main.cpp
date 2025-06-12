@@ -9,6 +9,8 @@ int main()
 {
     srand(time(0));
 
+    // TESTING
+
     // TCandidate can1;
     // can1.get_max_binary_rate();
 //    TPopulation* pop1 = new TPopulation(10);
@@ -34,7 +36,7 @@ int main()
     //     cout <<"candidate#"<< can->get_id()<< " " <<can-> get_rate() << endl;
     // }
 
-    //CHOOSING PATTERN
+    //ALGORITHM
 
     TCandidate* pattern;
     int _type = -1;
