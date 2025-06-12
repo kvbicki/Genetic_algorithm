@@ -34,6 +34,7 @@ void TAlgorithm::run()
     while (!wsk_population_prev || !stop)
     {
         wsk_population_pres->calculate();
+        wsk_population_pres->info();
 
         older.push_back(new TPopulation(*wsk_population_pres));
 
@@ -75,8 +76,7 @@ void TAlgorithm::run()
             wsk_population_prev = new TPopulation(*wsk_population_pres);
 
             delete wsk_population_pres;
-            wsk_population_pres = new TPopulation(candidates_count, pattern);
-
+            wsk_population_pres = new TPopulation(*wsk_population_prev);  // <-- ZMIENIONE TYLKO TO
         }
 
     }
