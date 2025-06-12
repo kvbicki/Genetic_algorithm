@@ -10,7 +10,11 @@ public:
         init_vector();
     }
 
-    TCandidate_Zad3(const TCandidate_Zad3& original) : TCandidate(original) {}
+    TCandidate_Zad3(const TCandidate_Zad3& original) : TCandidate(original) 
+    {
+        this->genotype = original.genotype;
+        this->gens_count = original.gens_count;
+    }
     TCandidate* create()
     {
         return new TCandidate_Zad3();

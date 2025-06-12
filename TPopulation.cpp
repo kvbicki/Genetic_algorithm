@@ -28,6 +28,7 @@ TPopulation::TPopulation(const TPopulation& orginal)
         int random_number = std::rand() % 100 + 1;
 
         const TCandidate* wsk_os_org1 = orginal.promote_candidate();
+        cout << wsk_os_org1->get_id() << endl;
         const TCandidate* wsk_os_org2 = orginal.promote_candidate(); 
 
         TCandidate* can1 = wsk_os_org1->create_copy();

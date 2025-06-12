@@ -9,7 +9,10 @@ public:
     {
         init_vector();
     }
-    TCandidate_Zad2(const TCandidate_Zad2& orginal) : TCandidate(orginal) {}
+    TCandidate_Zad2(const TCandidate_Zad2& original) : TCandidate(original) {
+        this->genotype = original.genotype;
+        this->gens_count = original.gens_count;
+    }
     TCandidate* create()
     {
         return new TCandidate_Zad2();
@@ -23,7 +26,7 @@ public:
         double x1 = genotype[0].get_val();
         double x2 = genotype[1].get_val();
 
-        rate = x1+x2;
+        rate = x1*x2+x2;
     }
 
 protected:
