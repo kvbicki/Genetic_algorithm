@@ -32,7 +32,7 @@ This project implements a genetic algorithm framework designed to solve optimiza
 
 ./genetic_algorithm
 
--When prompted, choose a problem type:
+### When prompted, choose a problem type:
 
 1 for TCandidate_Zad1 (2 variables: x1, x2)
 
