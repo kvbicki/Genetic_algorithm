@@ -1,4 +1,12 @@
-s:** Supports different problem formulations through polymorphic candidate classes.
+# Genetic Algorithm Implementation
+
+This project implements a genetic algorithm framework designed to solve optimization problems. The algorithm evolves populations of candidate solutions over generations by applying selection, crossover, and mutation operations to find optimal or near-optimal solutions.
+
+---
+
+## Features
+
+- **Flexible Candidate Types:** Supports different problem formulations through polymorphic candidate classes.
 - **Configurable Parameters:** Adjustable population size, stopping conditions, and genetic operation settings.
 - **Multiple Stopping Criteria:**
   - Maximum number of generations
