@@ -21,6 +21,7 @@ private:
 public:
     TPopulation(unsigned int candidates_count, TCandidate* pattern);
     TPopulation(const TPopulation &orignal);
+    ~TPopulation();
 
     void calculate();
     void info();
@@ -29,7 +30,7 @@ public:
     TCandidate* promote_candidate() const;
     void cross(TCandidate* can1, TCandidate* can2);
 	std::string mutation(std::string old_binary);
-    std::string get_mark(TCandidate);
+    // std::string get_mark(TCandidate);
 
     double get_best_rate() const;
     unsigned int get_candidates_count() const;

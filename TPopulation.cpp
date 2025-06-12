@@ -20,7 +20,7 @@ TPopulation::TPopulation(unsigned int candidates_count, TCandidate* pattern)
 
 TPopulation::TPopulation(const TPopulation& orginal)
 {
-    id = ++_id;
+    id = orginal.id;
     candidates_count = orginal.get_candidates_count(); 
     best_val = orginal.get_best_rate();                 
 
@@ -32,8 +32,7 @@ TPopulation::TPopulation(const TPopulation& orginal)
 
         TCandidate* can1 = wsk_os_org1->create_copy();
         TCandidate* can2 = wsk_os_org2->create_copy();
-        can1->info();
-        can2->info();
+ 
 
         if (random_number >= 75) {
             std::string rate1 = can1->get_binary_rate();
@@ -50,6 +49,13 @@ TPopulation::TPopulation(const TPopulation& orginal)
             cross(can1, can2);
         }
     }
+}
+TPopulation::~TPopulation() {
+    for (auto candidate : candidates) {
+        delete candidate;
+    }
+    candidates.clear();
+    BestCandidate = nullptr;
 }
 
 
@@ -116,17 +122,28 @@ TCandidate* TPopulation::get_best_candidate()
     return BestCandidate;
 }
 
-double TPopulation::get_best_rate() const 
+double TPopulation::get_best_rate() const
 {
-    return BestCandidate->get_rate();
+    if (candidates.empty()) {
+        return -1;
+    }
+
+    double best = -1;
+    for (size_t i = 0; i < candidates.size(); ++i) {
+        if (!candidates[i]) {
+            continue;
+        }
+
+        double r = candidates[i]->get_rate();
+        if (r > best) best = r;
+    }
+
+    return best;
 }
 
 TCandidate* TPopulation::promote_candidate() const
 {
-    if (candidates_count == 0 || rate_sum <= 0) {
-        return nullptr;
-    }
-
+    
     double random_num = static_cast<double>(std::rand()) / RAND_MAX * rate_sum;
     double cumulative_rate = 0.0;
 

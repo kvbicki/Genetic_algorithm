@@ -10,7 +10,10 @@ public:
         init_vector();
     }
 
-    TCandidate_Zad1(const TCandidate_Zad1& orginal) : TCandidate(orginal) {}
+TCandidate_Zad1(const TCandidate_Zad1& original) : TCandidate(original) {
+    this->genotype = original.genotype;
+    this->gens_count = original.gens_count;
+}
     TCandidate* create()
     {
         return new TCandidate_Zad1();
@@ -32,6 +35,5 @@ protected:
         genotype.push_back({"X1", 0, 10, 1});
         genotype.push_back({"X2", 0, 10, 1});
         gens_count = genotype.size();
-        std::cout << "TCandidate_Zad1 initialized with " << gens_count << " genes." << std::endl;
     }
 };

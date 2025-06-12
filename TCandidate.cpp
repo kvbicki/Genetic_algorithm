@@ -19,7 +19,6 @@ TCandidate::TCandidate(const TCandidate& original)
 {
     rate = original.get_rate();
     gens_count = genotype.size();
-
     for (int i =0; i < gens_count; i++){
         double x_start = original.genotype[i].get_x_start();
         double x_end = original.genotype[i].get_x_end();
@@ -107,7 +106,6 @@ int TCandidate::needed_bits(int max_value) const {
     return bits;
 }
 int TCandidate::get_max_bits() const {
-    std::cout << "genotype size: " << genotype.size() << std::endl;
 
     int possible_rate = genotype[0].get_x_end() * genotype[0].get_x_end() + genotype[1].get_x_end();
     return needed_bits(possible_rate);

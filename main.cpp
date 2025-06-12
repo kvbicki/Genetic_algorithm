@@ -37,13 +37,11 @@ int main()
     //CHOOSING PATTERN
 
     TCandidate* pattern;
-    int count = 0;
     int _type = -1;
 
     cout << "Choose candidate type: " << endl;
     cin >> _type;
-    cout << "Candidates count: ";
-    cin >> count;
+
     switch (_type)
     {
     case 1:
@@ -61,14 +59,11 @@ int main()
     }
 
 
-    // START ALGORITHM
 
 	unsigned int candidates_count = 10;
-    unsigned int max_population_count = 20;
+    unsigned int max_population_count = 200;
 	unsigned int min_improvment_proc = 2;
     TAlgorithm task{pattern,candidates_count,max_population_count,min_improvment_proc };
 	task.run();
-
-
 }
 
