@@ -17,7 +17,7 @@ private:
     double result = 0;              
 
 public:
-    TAlgorithm(TCandidate* pattern,unsigned int candidates_count, unsigned int max_population_count, unsigned int min_improvment_proc);
+    TAlgorithm(TCandidate* pattern,unsigned int candidates_count, unsigned int max_population_count, unsigned int min_improvment_proc, unsigned int pop_check);
     ~TAlgorithm();
 
     void run();

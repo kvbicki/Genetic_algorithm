@@ -59,11 +59,11 @@ int main()
     }
 
 
-
 	unsigned int candidates_count = 10;
     unsigned int max_population_count = 200;
 	unsigned int min_improvment_proc = 2;
-    TAlgorithm task{pattern,candidates_count,max_population_count,min_improvment_proc };
+    unsigned int pop_check = 5;
+    TAlgorithm task{pattern,candidates_count,max_population_count,min_improvment_proc, pop_check};
 	task.run();
 }
 

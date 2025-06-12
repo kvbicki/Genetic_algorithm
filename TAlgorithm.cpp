@@ -6,7 +6,8 @@
 
 using namespace std;
 
-TAlgorithm::TAlgorithm(TCandidate* pattern,unsigned int candidates_count, unsigned int max_population_count, unsigned int min_improvment_proc)
+TAlgorithm::TAlgorithm(TCandidate* pattern,unsigned int candidates_count, unsigned int max_population_count, unsigned int min_improvment_proc,unsigned int pop_check)
+    : stop_max_population_count(max_population_count), stop_min_improvment_proc(min_improvment_proc), pop_check(pop_check)
 {
     stop_max_population_count = max_population_count;
     stop_min_improvment_proc = min_improvment_proc;
@@ -15,7 +16,7 @@ TAlgorithm::TAlgorithm(TCandidate* pattern,unsigned int candidates_count, unsign
     wsk_population_pres = new TPopulation(candidates_count, pattern);
     wsk_population_prev = nullptr;
 
-    pop_check = 5;
+    pop_check = pop_check;;
 }
 
 TAlgorithm::~TAlgorithm()
