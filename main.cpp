@@ -61,7 +61,7 @@ int main()
     }
 
 
-	unsigned int candidates_count = 10;
+	unsigned int candidates_count = 50;
     unsigned int max_population_count = 200;
 	unsigned int min_improvment_proc = 2;
     unsigned int pop_check = 5;

@@ -35,6 +35,7 @@ void TAlgorithm::run()
     while (!wsk_population_prev || !stop)
     {
         wsk_population_pres->calculate();
+        // wsk_population_pres->get_best_candidate()->info();
         // wsk_population_pres->info();
 
         older.push_back(new TPopulation(*wsk_population_pres));
@@ -84,6 +85,7 @@ void TAlgorithm::run()
     }
 
     cout << "\nAlgorithm stopped after " << wsk_population_pres->get_id() << " generations." << endl;
+    wsk_population_pres->get_best_candidate()->info();
     cout << "Best value found: " << result << endl;
 }
 
