@@ -81,12 +81,6 @@ The program will display:
 
 ---
 
-## License
-
-This project is open-source. Feel free to use and modify it for your needs.
-
----
-
 ## Future Improvements
 
 - Add more problem types.
