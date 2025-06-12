@@ -6,15 +6,17 @@
 
 using namespace std;
 
-TAlgorithm::TAlgorithm(unsigned int candidates_count, unsigned int max_population_count, unsigned int min_improvment_proc)
+TAlgorithm::TAlgorithm(TCandidate* pattern,unsigned int candidates_count, unsigned int max_population_count, unsigned int min_improvment_proc,unsigned int pop_check)
+    : stop_max_population_count(max_population_count), stop_min_improvment_proc(min_improvment_proc), pop_check(pop_check)
 {
     stop_max_population_count = max_population_count;
     stop_min_improvment_proc = min_improvment_proc;
+    this->pattern = pattern;
 
-    wsk_population_pres = new TPopulation(candidates_count);
+    wsk_population_pres = new TPopulation(candidates_count, pattern);
     wsk_population_prev = nullptr;
 
-    pop_check = 8;
+    pop_check = pop_check;;
 }
 
 TAlgorithm::~TAlgorithm()
@@ -33,6 +35,8 @@ void TAlgorithm::run()
     while (!wsk_population_prev || !stop)
     {
         wsk_population_pres->calculate();
+        // wsk_population_pres->get_best_candidate()->info();
+        // wsk_population_pres->info();
 
         older.push_back(new TPopulation(*wsk_population_pres));
 
@@ -73,12 +77,15 @@ void TAlgorithm::run()
             if (wsk_population_prev) delete wsk_population_prev;
             wsk_population_prev = new TPopulation(*wsk_population_pres);
 
-            wsk_population_pres = new TPopulation(wsk_population_prev);
+            delete wsk_population_pres;
+            wsk_population_pres = new TPopulation(*wsk_population_prev);
+            wsk_population_pres->set_id(wsk_population_prev->get_id() + 1);
         }
 
     }
 
     cout << "\nAlgorithm stopped after " << wsk_population_pres->get_id() << " generations." << endl;
+    wsk_population_pres->get_best_candidate()->info();
     cout << "Best value found: " << result << endl;
 }
 

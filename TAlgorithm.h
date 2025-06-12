@@ -7,8 +7,9 @@ private:
     unsigned int stop_max_population_count;
     unsigned int stop_min_improvment_proc;
 
-    TPopulation* wsk_population_pres;
-    TPopulation* wsk_population_prev;
+    TCandidate* pattern = nullptr;
+    TPopulation* wsk_population_pres = nullptr;
+    TPopulation* wsk_population_prev = nullptr;
 
     std::vector<TPopulation*> older; 
     std::vector<bool> older_rate;      
@@ -16,7 +17,7 @@ private:
     double result = 0;              
 
 public:
-    TAlgorithm(unsigned int candidates_count, unsigned int max_population_count, unsigned int min_improvment_proc);
+    TAlgorithm(TCandidate* pattern,unsigned int candidates_count, unsigned int max_population_count, unsigned int min_improvment_proc, unsigned int pop_check);
     ~TAlgorithm();
 
     void run();
