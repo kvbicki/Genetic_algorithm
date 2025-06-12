@@ -110,3 +110,6 @@ int TCandidate::get_max_bits() const {
     int possible_rate = genotype[0].get_x_end() * genotype[0].get_x_end() + genotype[1].get_x_end();
     return needed_bits(possible_rate);
 }
+void TCandidate::set_id(unsigned int new_id) {
+    id = new_id;
+}

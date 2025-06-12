@@ -49,6 +49,11 @@ TPopulation::TPopulation(const TPopulation& orginal)
             cross(can1, can2);
         }
     }
+    for (unsigned int i = 0; i < candidates.size(); ++i) {
+        candidates[i]->set_id(i + 1);
+    }
+
+    candidates_count = candidates.size();
 }
 TPopulation::~TPopulation() {
     for (auto candidate : candidates) {

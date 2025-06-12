@@ -32,6 +32,7 @@ public:
 	void set_genes_value(std::string binary_value);
     int needed_bits(int max_value) const;
     int get_max_bits() const;
+    void set_id(unsigned int new_id);
 protected:
     virtual void init_vector() = 0;
     
