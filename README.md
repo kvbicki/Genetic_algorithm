@@ -27,7 +27,8 @@ This project implements a genetic algorithm framework designed to solve optimiza
 ### Compile the program
 
 -g++ main.cpp TAlgorithm.cpp TCandidate.cpp TParam.cpp TPopulation.cpp -o genetic_algorithm
--Run the program
+
+###Run the program
 
 ./genetic_algorithm
 
