@@ -20,7 +20,7 @@ TPopulation::TPopulation(unsigned int candidates_count, TCandidate* pattern)
 
 TPopulation::TPopulation(const TPopulation& orginal)
 {
-    id = ++_id;
+    id = orginal.id;
     candidates_count = orginal.get_candidates_count(); 
     best_val = orginal.get_best_rate();                 
 

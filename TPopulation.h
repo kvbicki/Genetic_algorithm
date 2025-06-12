@@ -36,4 +36,5 @@ public:
     unsigned int get_candidates_count() const;
     void test(int num_testing);
     unsigned int get_id();
+    void set_id(unsigned int id) { this->id = id; }
 };
