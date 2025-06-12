@@ -35,12 +35,6 @@ int main()
     //     // can = pop.promote_candidate();
     //     cout <<"candidate#"<< can->get_id()<< " " <<can-> get_rate() << endl;
     // }
-<<<<<<< HEAD
-	unsigned int candidates_count = 10;
-    unsigned int max_population_count = 20;
-	unsigned int min_improvment_proc = 2;
-    TAlgorithm task{candidates_count,max_population_count,min_improvment_proc };
-	task.run();
 
     // vector<TCandidate*> candidates;
     // candidates.push_back(new TCandidate());
@@ -56,7 +50,7 @@ int main()
     // {
     //     delete candidates[i];
     // }
-=======
+
 
     //ALGORITHM
 
@@ -81,10 +75,9 @@ int main()
         pattern = new TCandidate_Zad1();
         break;
     }
->>>>>>> abstraction
 
 
-	unsigned int candidates_count = 50;
+	unsigned int candidates_count = 10;
     unsigned int max_population_count = 200;
 	unsigned int min_improvment_proc = 2;
     unsigned int pop_check = 5;
