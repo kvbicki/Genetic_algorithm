@@ -87,3 +87,15 @@ The program will display:
 - Implement additional selection methods (e.g., tournament, rank-based).
 - Add configuration file support.
 - Implement parallel processing for fitness evaluation.
+
+---
+
+## Example Output
+
+The program outputs:
+
+- Current generation number and the best fitness value found.
+- Details of the best candidate solution in the current generation.
+- The overall best solution found after termination.
+
+![Example output screenshot](assets/demoss)
