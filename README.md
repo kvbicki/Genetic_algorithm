@@ -24,14 +24,33 @@ This project implements a genetic algorithm framework designed to solve optimiza
 
 ## How to Use
 
-### Compile the program
+### Build the program with CMake
 
--g++ main.cpp TAlgorithm.cpp TCandidate.cpp TParam.cpp TPopulation.cpp -o genetic_algorithm
+1. Create and enter the build directory:
 
-### Run the program
+```bash
+mkdir build
+cd build
+```
+2. Generate the build system with CMake:
+
+```bash
+
+cmake ..
+```
+3. Build the executable:
+
+```bash
+
+cmake --build .
+```
+4. Run the program
+From the build directory run:
+
+```bash
 
 ./genetic_algorithm
-
+```
 ### When prompted, choose a problem type:
 
 1 for TCandidate_Zad1 (2 variables: x1, x2)
