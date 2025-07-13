@@ -1,0 +1,21 @@
+# Build files
+/build/
+/CMakeFiles/
+/CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+# IDE
+.vscode/
+.vs/
+.idea/
+
+# Systemowe
+*.exe
+*.dll
+*.obj
+*.o
+*.log
+
+# Mac OS
+.DS_Store
