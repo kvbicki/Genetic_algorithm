@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Szymon\Desktop\Programowanie\projektowanie obiektowe\projekty\alggen2025_szymonkubicki\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Szymon\Desktop\Programowanie\projektowanie obiektowe\projekty\alggen2025_szymonkubicki\src\TAlgorithm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Szymon\Desktop\Programowanie\projektowanie obiektowe\projekty\alggen2025_szymonkubicki\src\TCandidate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Szymon\Desktop\Programowanie\projektowanie obiektowe\projekty\alggen2025_szymonkubicki\src\TParam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Szymon\Desktop\Programowanie\projektowanie obiektowe\projekty\alggen2025_szymonkubicki\src\TPopulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Szymon\Desktop\Programowanie\projektowanie obiektowe\projekty\alggen2025_szymonkubicki\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{0B9EDAF5-3554-3A84-BBA8-7FCE5274BFC9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+^C:\USERS\SZYMON\DESKTOP\PROGRAMOWANIE\PROJEKTOWANIE OBIEKTOWE\PROJEKTY\ALGGEN2025_SZYMONKUBICKI\BUILD\CMAKEFILES\BF3A6DD798716CEFDB1B68F2AEBDE75D\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Szymon/Desktop/Programowanie/projektowanie obiektowe/projekty/alggen2025_szymonkubicki" "-BC:/Users/Szymon/Desktop/Programowanie/projektowanie obiektowe/projekty/alggen2025_szymonkubicki/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/Szymon/Desktop/Programowanie/projektowanie obiektowe/projekty/alggen2025_szymonkubicki/build/GeneticAlgorithm.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
